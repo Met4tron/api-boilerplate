@@ -1,0 +1,8 @@
+{
+  "name": "api-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Met4tron/api-boilerplate.git",
+  "author": "Yuri Gomes <yuurig@gmail.com>",
+  "license": "MIT"
+}
