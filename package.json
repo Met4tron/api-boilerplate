@@ -2,7 +2,36 @@
   "name": "api-boilerplate",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Met4tron/api-boilerplate.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Met4tron/api-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Met4tron/api-boilerplate/issues"
+  },
   "author": "Yuri Gomes <yuurig@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./src/app"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.1",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "http-status": "^1.1.2",
+    "method-override": "^2.3.10",
+    "mongoose": "^5.1.2",
+    "morgan": "^1.9.0",
+    "pm2": "^2.10.4"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.17.5"
+  }
 }
