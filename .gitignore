@@ -238,5 +238,6 @@ freeline.py
 freeline/
 freeline_project_description.json
 
+/dist
 
 # End of https://www.gitignore.io/api/web,node,reactnative

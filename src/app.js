@@ -1,9 +1,7 @@
-const fs = require('fs')
-const express = require('express')
-const path = require('path')
-const config = require('./config/config')
-const middlewares = require('./config/middlewares')
-const Routes = require('./routes')
+import express from 'express'
+import config from './config/config'
+import middlewares from './config/middlewares'
+import Routes from './routes'
 require('./config/db')
 
 const api = express()
@@ -12,6 +10,6 @@ api.use('/api', Routes)
 
 api.listen(config.PORT, (err) => {
   if (err) {
-    console.log(err) 
+    console.log(err)
   }
 })

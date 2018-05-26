@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const User = require('./user')
+import User from './user'
+import { Router } from 'express'
 
-const routes = new Router();
+const routes = new Router()
 
 routes.use('/user', User)
 

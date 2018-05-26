@@ -12,7 +12,10 @@
   "author": "Yuri Gomes <yuurig@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/app"
+    "start": "node ./dist/app",
+    "dev": "nodemon -w src --exec \"babel-node src/app.js\"",
+    "build": "babel src -s -D -d dist",
+    "lint": "./node_modules/.bin/esw src --watch --color"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -31,7 +34,16 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "eslint-watch": "^3.1.5",
+    "husky": "^0.14.3",
     "nodemon": "^1.17.5"
   }
 }
