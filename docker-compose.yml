@@ -1,18 +1,12 @@
 version: '2'
-
 services:
-  api-boilerplate:
-    build:
-      context: .
-    volumes:
-      - .:/www
-      - /www/node_modules
-    ports: 
-      - "3000:3000"
-    env-file:
-      - .env
-    links:
-      - mongo
-  mongo:
-    image: "mongo:3.4"
-    ports: "27017:27017"
+    mongodb:
+        image: mongo:latest
+        container_name: "mongo"
+    free_bets:
+        build: .
+        container_name: "free_bets"
+        links:
+            - mongodb
+        depends_on:
+            - mongodb
