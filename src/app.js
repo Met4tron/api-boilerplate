@@ -14,4 +14,6 @@ api.listen(config.PORT, (err) => {
   if (err) {
     console.log(err) 
   }
+
+  console.log("start server")
 })

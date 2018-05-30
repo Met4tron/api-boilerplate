@@ -1,0 +1,12 @@
+version: '2'
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: "mongo"
+    free_bets:
+        build: .
+        container_name: "free_bets"
+        links:
+            - mongodb
+        depends_on:
+            - mongodb

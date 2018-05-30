@@ -12,7 +12,7 @@
   "author": "Yuri Gomes <yuurig@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/app"
+    "start": "node ./src/app"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
