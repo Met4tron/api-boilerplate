@@ -1,12 +1,12 @@
 # Use latest node version 8.x
-FROM node:8.10.0
+FROM mhart/alpine-node
 
 MAINTAINER Yuri Gomes <yuurig@gmail.com>
 
 # create app directory in container
 RUN mkdir -p /www
 
-# set /app directory as default working directory
+# set /www directory as default working directory
 WORKDIR /www
 
 # only copy package.json initially so that `RUN yarn` layer is recreated only
@@ -16,11 +16,11 @@ ADD package.json yarn.lock /www/
 # --pure-lockfile: Don’t generate a yarn.lock lockfile
 RUN yarn --pure-lockfile
 
-# copy all file from current dir to /app in container
+# copy all file from current dir to /www in container
 COPY . /www/
 
-# expose port 4040
+# expose port 3000
 EXPOSE 3000
 
 # cmd to start service
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "dev" ]
