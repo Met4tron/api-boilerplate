@@ -1,12 +1,10 @@
-import User from './user'
-import Games from './games'
-import Bets from './bets'
-import { Router } from 'express'
+const UserRoutes = require('./user')
+const BetsRoutes = require('./bets')
+const GameRoutes = require('./games')
+const router = require('express').Router()
 
-const routes = new Router()
+router.use('/user', UserRoutes)
+router.use('/bets', BetsRoutes)
+router.use('/games', GameRoutes)
 
-// routes.use('/user', User)
-// routes.use('/games', Games)
-// routes.use('/bets', Bets)
-
-module.exports = routes
+module.exports = router

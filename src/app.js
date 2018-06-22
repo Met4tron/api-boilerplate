@@ -1,16 +1,19 @@
-import express from 'express'
-import config from './config/config'
-import middlewares from './config/middlewares'
-import Routes from './routes'
+require('dotenv').config()
+const express = require('express')
+const config = require('./config/config')
+const middlewares = require('./config/middlewares')
+const routes = require('./routes')
 require('./config/db')
 
 const api = express()
 middlewares(api)
-api.use('/api', Routes)
+api.use('/api', routes)
 
-api.listen(config.PORT, (err) => {
+console.log(api._router.stack)
+
+api.listen(9001, (err) => {
   if (err) {
     console.log(err)
   }
-  console.log('Server Running!!')
+  console.log(`Server Running on port ${config.port}!!`)
 })
