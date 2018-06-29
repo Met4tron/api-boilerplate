@@ -9,8 +9,6 @@ const api = express()
 middlewares(api)
 api.use('/api', routes)
 
-console.log(api._router.stack)
-
 api.listen(9001, (err) => {
   if (err) {
     console.log(err)

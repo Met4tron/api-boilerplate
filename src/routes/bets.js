@@ -2,13 +2,10 @@ const Bets = require('../controllers/BetsController')
 const { Router } = require('express')
 const BetsRouter = new Router()
 
-BetsRouter.route('/:id')
-  .get(Bets.getStats)
+BetsRouter.route('/betId/:id')
+  .get(Bets.getBet)
   .delete(Bets.deleteBet)
   .put(Bets.updateBet)
-
-BetsRouter.route('/:id/stats')
-  .get(Bets.getStats)
 
 BetsRouter.route('/create')
   .post(Bets.createBet)
