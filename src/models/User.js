@@ -16,6 +16,9 @@ const User = new mongoose.Schema({
   },
   wins: {
     type: Number
+  },
+  avatar: {
+    type: String
   }
 })
 

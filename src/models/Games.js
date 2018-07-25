@@ -9,6 +9,22 @@ const Games = new mongoose.Schema({
     type: String,
     required: true
   },
+  status: {
+    type: String,
+    enum: ['LIVE', 'FINISHED', 'PENDING'],
+    default: 'PENDING'
+  },
+  assets: {
+    teamOne: {
+      url: String
+    },
+    teamTwo: {
+      url: String
+    }
+  },
+  gameDate: {
+    type: Date
+  },
   bets: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Bets'

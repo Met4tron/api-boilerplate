@@ -7,6 +7,9 @@ BetsRouter.route('/betId/:id')
   .delete(Bets.deleteBet)
   .put(Bets.updateBet)
 
+BetsRouter.route('/all')
+  .get(Bets.getAllBets)
+
 BetsRouter.route('/create')
   .post(Bets.createBet)
 

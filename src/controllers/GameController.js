@@ -3,8 +3,8 @@ const mongoose = require('mongoose')
 
 exports.getGame = async (req, res) => {
   try {
-    const { gameId } = req.body.game;
-    const dataGame = await Game.findOne({ _id: mongoose.Types.ObjectId(gameId) });
+    const { id } = req.params;
+    const dataGame = await Game.findOne({ _id: mongoose.Types.ObjectId(id) });
     return res
           .status(200)
           .json(dataGame)
@@ -13,10 +13,26 @@ exports.getGame = async (req, res) => {
     return res.status(500);
   }
 }
+
+exports.modifyStatus = async (req, res) => {
+  try {
+    const { id, status } = req.query;
+    const gameModified = Game.update(id, {
+      $set: {
+        status: status
+      }
+    });
+    return res.status(200).json({ message: 'Status Updated' });
+  } catch(e) {
+    return res.status(500);
+  }
+}
+
+
 exports.deleteGame = async (req, res) => {
   try {
-    const { gameId } = req.body.gameId;
-    const dataGame = await Game.remove({ _id: gameId });
+    const { id } = req.params;
+    const dataGame = await Game.remove({ _id: id });
     return res.status(200).json({ message: 'Delete' });
   } catch (err) {
     console.log(err);
@@ -25,11 +41,11 @@ exports.deleteGame = async (req, res) => {
 }
 exports.createGame = async (req, res) => {
   try {
-    console.log(req.body);
-    const { teamOne, teamTwo } = req.body;
+    const { teamOne, teamTwo, gameDate } = req.body;
     const newGame = new Game({
       teamOne: teamOne,
       teamTwo: teamTwo,
+      gameDate: gameDate
     });
     await newGame.save();
     return res.status(200).json({ message: 'Created' });
@@ -53,7 +69,7 @@ exports.updateGame = async (req, res) => {
 }
 exports.getAllGames = async (req, res) => {
   try {
-    const data = await Game.find({});
+    const data = await Game.find({}).populate({path: "bets", populate: {path: "user"}}).sort({ gameDate: -1 })
     return res.json(data)
   } catch (err) {
     console.log(err);
