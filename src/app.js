@@ -9,7 +9,7 @@ const api = express()
 middlewares(api)
 api.use('/api', routes)
 
-api.listen(9001, (err) => {
+api.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(err)
   }

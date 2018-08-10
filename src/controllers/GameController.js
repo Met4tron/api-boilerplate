@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 exports.getGame = async (req, res) => {
   try {
     const { id } = req.params;
-    const dataGame = await Game.findOne({ _id: mongoose.Types.ObjectId(id) });
+    const dataGame = await Game.findOne({ _id: mongoose.Types.ObjectId(id) }).populate('Bets');
     return res
           .status(200)
           .json(dataGame)
@@ -27,7 +27,6 @@ exports.modifyStatus = async (req, res) => {
     return res.status(500);
   }
 }
-
 
 exports.deleteGame = async (req, res) => {
   try {
@@ -56,9 +55,14 @@ exports.createGame = async (req, res) => {
 }
 exports.updateGame = async (req, res) => {
   try {
-    const { gameId, teamOne, teamTwo } = req.body.game;
+    const { gameId, teamOne, teamTwo, gameDate, createdBy } = req.body;
     const gameToSave = {
-      $set: req.body.game
+      $set: {
+        teamOne: teamOne, 
+        teamTwo: teamTwo, 
+        gameDate: gameDate,
+        createdBy: createdBy
+      }
     }
     const dataGame = await Game.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(gameId) }, gameToSave);
     return res.status(200).json(dataGame);

@@ -18,20 +18,3 @@ exports.updateUser = async (req, res) => {
     res.status(500);
   }
 }
-
-exports.deleteUser = async (req, res) => {
-  try {
-    const { userId } = req.body;
-    const deletedUser = User.remove({ _id: userId });
-  } catch (err) {
-    res.status(500);
-  }
-}
-
-exports.createUser = async (req, res) => {
-  try {
-
-  } catch (err) {
-    res.status(500);
-  }
-}

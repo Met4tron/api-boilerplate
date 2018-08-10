@@ -1,12 +1,20 @@
 version: '2'
 services:
-    mongodb:
-        image: mongo:latest
-        container_name: "mongo"
-    free_bets:
-        build: .
-        container_name: "free_bets"
-        links:
-            - mongodb
-        depends_on:
-            - mongodb
+  free_bets:
+    restart: always
+    build: .
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "3000:3000"
+    links:
+        - mongodb
+    depends_on:
+        - mongodb
+  mongodb:
+    image: mvertes/alpine-mongo
+    volumes: 
+      - /data/db:/data/db
+    ports:
+      - "27017:27017"

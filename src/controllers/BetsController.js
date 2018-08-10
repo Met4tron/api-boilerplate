@@ -13,7 +13,7 @@ exports.getBet = async (req, res) => {
   }
 }
 
-exports.getAllBets = async (req, res) => {
+exports.getAllBetsByGame = async (req, res) => {
   try {
     const allBets = await Bets.find({});
     return res.status(200).json(allBets)
@@ -34,11 +34,15 @@ exports.deleteBet = async (req, res) => {
 
 exports.updateBet = async (req, res) => {
   try {
-    const { betsId } = req.body.bets;
+    const { betId, teamOne, teamTwo } = req.body;
+    const user = req.user
     const betToUpdate = {
-      $set: req.body.bets
+      $set: {
+        teamOne: teamOne,
+        teamTwo: teamTwo
+      }
     }
-    const dataBets = await Bets.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(betsId) }, betToUpdate);
+    const dataBets = await Bets.findByIdAndUpdate({ _id: mongoose.Types.ObjectId(betId), user: mongoose.Types.ObjectId(user._id) }, betToUpdate);
     return res.status(200).json(dataBets);
   } catch (err) {
     return res.status(500);
@@ -47,8 +51,8 @@ exports.updateBet = async (req, res) => {
 
 exports.createBet = async (req, res) => {
   try {
-    const { teamOne, teamTwo, currentUser } = req.body;
-    const newBet = new Bets({ teamOne, teamTwo, currentUser });
+    const { teamOne, teamTwo, gameId } = req.body;
+    const newBet = new Bets({ teamOne: teamOne, teamTwo: teamTwo, game: gameId });
     const game = await Game.findOne({ _id: mongoose.Types.ObjectId(gameId) });
     const betSaved = await newBet.save();
     game.bets.push(betSaved);

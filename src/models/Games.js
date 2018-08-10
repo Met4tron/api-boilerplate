@@ -22,6 +22,10 @@ const Games = new mongoose.Schema({
       url: String
     }
   },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   gameDate: {
     type: Date
   },

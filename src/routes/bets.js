@@ -8,7 +8,7 @@ BetsRouter.route('/betId/:id')
   .put(Bets.updateBet)
 
 BetsRouter.route('/all')
-  .get(Bets.getAllBets)
+  .get(Bets.getAllBetsByGame)
 
 BetsRouter.route('/create')
   .post(Bets.createBet)

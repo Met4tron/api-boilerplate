@@ -1,15 +1,17 @@
-FROM node:latest
+FROM mhart/alpine-node
 
-EXPOSE 3000
+RUN mkdir -p /usr/app
 
-WORKDIR /app
+WORKDIR /usr/app
 
-COPY package.json ./
+COPY package.json /usr/app
 
-COPY yarn.lock ./
+COPY yarn.lock /usr/app
 
 RUN yarn install
 
-COPY . .
+COPY . /usr/app
 
-CMD [ "yarn", "start"]
+EXPOSE 3000
+
+CMD [ "yarn", " run dev"]
